@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public partial class V : MonoBehaviour
+public partial class V : MonoBehaviour //공용 스태틱 클래스
 {
     public static GameObject MainCanvas = null;
 
@@ -27,14 +27,13 @@ public partial class V : MonoBehaviour
     public static ObjectPool pool = null;
     public static void Awake()
     {
-        MainCanvas = GameObject.Find("MainCanvas");
+        MainCanvas = GameObject.Find("MainCanvas"); 
     }
 
     // Update is called once per frame
     public static void Update()
     {
-        WorldTIme = Time.time;
+        WorldTIme = Time.time; // 월드 타임 기록
 
-        
     }
 }

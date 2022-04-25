@@ -21,7 +21,7 @@ public class Spawn : MonoBehaviour
     {
         if (SpawnPoint_Parent == null) GameObject.Find("SpawnPoint");
 
-        points = V.FInd_Child_Component_List<Transform>(SpawnPoint_Parent);
+        points = V.Find_Child_Component_List<Transform>(SpawnPoint_Parent);
     }
 
     public void SpawnBoss(Vector3 pos) 

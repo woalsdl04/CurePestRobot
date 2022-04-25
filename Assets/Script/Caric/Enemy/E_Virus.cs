@@ -33,7 +33,7 @@ public class E_Virus : EnemyBase
             for (int i = -1; i <= 1; i++)
             {
                 var obj = V.pool.Get<BulletBase>(POOLTYPE.BULLET);
-                obj.SetUp(BULLETTYPE.BASIC, transform, this, null, rot + (i * 10), 15);
+                obj.SetUp(BULLETTYPE.BASIC, transform.position, this, null, rot + (i * 10), 15);
                 obj.TrailInit(obj.gameObject, TrailTIme, TrailColor);
             }
 

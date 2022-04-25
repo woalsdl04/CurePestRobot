@@ -17,7 +17,7 @@ public enum ITEM
 public class Item : MonoBehaviour
 {
 
-    public void GetItem() 
+    public void GetItem() //아이템 적용
     {
         ITEM r = (ITEM)Random.Range(0, (int)ITEM.END);
 

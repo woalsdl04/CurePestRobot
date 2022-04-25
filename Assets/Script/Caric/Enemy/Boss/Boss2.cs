@@ -191,7 +191,7 @@ public class Boss2 : BossBase
             for (int j = -2; j <= 2; j++)
             {
                 var obj = V.pool.Get<BulletBase>(POOLTYPE.BULLET);
-                obj.SetUp(BULLETTYPE.BASIC, transform, this, null, rot + (j * 5), 15);
+                obj.SetUp(BULLETTYPE.BASIC, transform.position, this, null, rot + (j * 5), 15);
                 obj.TrailInit(obj.gameObject, 0.15f, TrailColor);
             }
 
@@ -200,7 +200,7 @@ public class Boss2 : BossBase
             for (int j = 0; j < 360; j += 10)
             {
                 var obj = V.pool.Get<BulletBase>(POOLTYPE.BULLET);
-                obj.SetUp(BULLETTYPE.BASIC, transform, this, null, j, 10);
+                obj.SetUp(BULLETTYPE.BASIC, transform.position, this, null, j, 10);
                 obj.TrailInit(obj.gameObject, TrailTIme, TrailColor);
             }
 
@@ -247,7 +247,7 @@ public class Boss2 : BossBase
 
         V.Sound.SFX_Play(SFX_SOUND.EXPLOSION);
         V.FInd_Child_Name("body", Body).SetActive(false);
-        V.Explosion(V.FInd_Child_Component_List<Rigidbody>(Body), Body.transform.position, 1f, 30f);
+        V.Explosion(V.Find_Child_Component_List<Rigidbody>(Body), Body.transform.position, 1f, 30f);
         Destroy(V.BossSlider);
 
         yield return new WaitForSeconds(3f);

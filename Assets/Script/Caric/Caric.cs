@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Caric : CBase
+public class Caric : CBase //캐릭터 베이스 클래스
 {
     public int Hp 
     {

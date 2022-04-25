@@ -112,7 +112,7 @@ public partial class Player_Main : Caric
 
         V.Particle_Play(POOLTYPE.PARTICLE_DIE, transform.position);
         V.FInd_Child_Name("Core", Body).SetActive(false);
-        V.Explosion(V.FInd_Child_Component_List<Rigidbody>(Body), Body.transform.position, 1f, 16f);
+        V.Explosion(V.Find_Child_Component_List<Rigidbody>(Body), Body.transform.position, 1f, 16f);
 
         V.Fade.FadeIn(Color.black, 1f, 1f, 1);
         V.IsGameOver = true;

@@ -5,7 +5,7 @@ using UnityEngine;
 public partial class Player_Main : Caric
 {
     
-    public void LevelUp()
+    public void LevelUp() //레벨 업
     {
         if (V.Player_Level > 4) return;
 
@@ -24,7 +24,7 @@ public partial class Player_Main : Caric
         V.UI.SetInfo("LEVEL UP!");
     }
 
-    public Vector3 ClampPlayerPos() 
+    public Vector3 ClampPlayerPos() //플레이어 위치 제한
     {
         return new Vector3
             (

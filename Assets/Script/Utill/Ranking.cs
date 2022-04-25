@@ -19,34 +19,14 @@ public class Rank
 public class Ranking : MonoBehaviour
 {
     public List<Text> ScoreText = new List<Text>();
-    public void AddRank(Rank newRank) 
+    public void AddRank(Rank newRank) //랭킹 추가
     {
         V.Rank.Add(newRank);
 
-        for (int i = 0; i < V.Rank.Count; i++)
-        {
-            int Count = 0;
-
-            for (int j = 0; j < V.Rank.Count; j++)
-            {
-                if(V.Rank[i].score < V.Rank[j].score || 
-                   (V.Rank[i].score == V.Rank[j].score && i < j)) 
-                {
-                    Count++;
-                }
-            }
-
-            if(Count >= ScoreText.Count) 
-            {
-                V.Rank.RemoveAt(i);
-                continue;
-            }
-
-            ScoreText[Count].text = V.Rank[i].name + " " + string.Format("{0:#,###}", V.Rank[i].score);
-        }
+        SetRank();
     }
 
-    public void SetRank() 
+    public void SetRank() //랭킹 정리
     {
         for (int i = 0; i < V.Rank.Count; i++)
         {
@@ -74,15 +54,9 @@ public class Ranking : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScoreText = V.FInd_Child_Component_List<Text>(gameObject);
+        ScoreText = V.Find_Child_Component_List<Text>(gameObject);
 
         SetRank();
-        //AddRank(new Rank("BBB", 10000));
-        //AddRank(new Rank("AAA", 100000));
-        //AddRank(new Rank("CCC", 1000));
-        //AddRank(new Rank("cscs", 321541));
-        //AddRank(new Rank("wdq", 1000032));
-        //AddRank(new Rank("dwqd", 100002));
     }
 
     // Update is called once per frame

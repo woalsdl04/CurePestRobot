@@ -18,7 +18,7 @@ public class ItemObj : CBase
     }
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player")) 
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player")) //아이템 획득
         {
             V.Item.GetItem();
             V.pool.Return(gameObject);

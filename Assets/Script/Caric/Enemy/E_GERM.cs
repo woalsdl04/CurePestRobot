@@ -29,7 +29,7 @@ public class E_GERM : EnemyBase
             for(int i = 0; i < 360; i += 20) 
             {
                 var obj = V.pool.Get<BulletBase>(POOLTYPE.BULLET);
-                obj.SetUp(BULLETTYPE.BASIC, transform, this, null, i, 15);
+                obj.SetUp(BULLETTYPE.BASIC, transform.position, this, null, i, 15);
                 obj.TrailInit(obj.gameObject, TrailTIme, TrailColor);
             }
 

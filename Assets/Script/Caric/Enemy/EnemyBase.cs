@@ -11,7 +11,7 @@ public enum ENEMY_STEP
     DIE
 }
 
-public class EnemyBase : Caric
+public class EnemyBase : Caric //적 베이스 클래스
 {
     public ENEMY_STEP enemyStep = ENEMY_STEP.START;
 
@@ -105,7 +105,7 @@ public class EnemyBase : Caric
     {
         V.Particle_Play(POOLTYPE.PARTICLE_DIE, transform.position);
         V.FInd_Child_Name("body", Body).SetActive(false);
-        V.Explosion(V.FInd_Child_Component_List<Rigidbody>(Body), Body.transform.position, 1f, 16f);
+        V.Explosion(V.Find_Child_Component_List<Rigidbody>(Body), Body.transform.position, 1f, 16f);
 
         DestroyEnemy(3f);
     }

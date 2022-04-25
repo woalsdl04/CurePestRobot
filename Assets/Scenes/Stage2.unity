@@ -1364,6 +1364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 318593764}
   - component: {fileID: 318593765}
+  - component: {fileID: 318593766}
   m_Layer: 0
   m_Name: Ingame
   m_TagString: Untagged
@@ -1403,6 +1404,28 @@ MonoBehaviour:
   RedRespawnTIme: 0
   WhiteRespawnTIme: 0
   NextStageTime: 0
+--- !u!114 &318593766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318593763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f489d117de4c0459f2b8be60b7a17b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info:
+    PlayerHp: 0
+    PlayerDmg: 0
+    PlayerSpeed: 0
+    EnemyHp: 00000000000000000000000000000000
+    EnemyDmg: 00000000000000000000000000000000
+    BossHp: 0000000000000000
+    BossDmg: 0000000000000000
+    RedRespawnTIme: 0
+    WhiteRespawnTIme: 0
 --- !u!1 &389112196
 GameObject:
   m_ObjectHideFlags: 0
@@ -4084,7 +4107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1512780991
 Transform:
   m_ObjectHideFlags: 0

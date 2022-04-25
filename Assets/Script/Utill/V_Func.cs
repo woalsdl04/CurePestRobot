@@ -30,7 +30,7 @@ public partial class V : MonoBehaviour
         }
     }
 
-    public static List<T> FInd_Child_Component_List<T>(GameObject rootObj) where T : Component
+    public static List<T> Find_Child_Component_List<T>(GameObject rootObj) where T : Component //
     {
         if (rootObj == null) return null;
 

@@ -147,7 +147,7 @@ public class Player_Fire : MonoBehaviour
             if (col[count % col.Length].GetComponent<EnemyBase>().enemyStep == ENEMY_STEP.ATTACK)
             {
                 var obj = V.pool.Get<BulletBase>(POOLTYPE.BULLET);
-                obj.SetUp(BULLETTYPE.SMART, V.Player.Core.transform, V.Player, col[count % col.Length].gameObject, 0, 2f);
+                obj.SetUp(BULLETTYPE.SMART, V.Player.Core.transform.position, V.Player, col[count % col.Length].gameObject, 0, 2f);
                 obj.TrailInit(obj.gameObject, trailTIme, trailColor);
             }
 
@@ -171,7 +171,7 @@ public class Player_Fire : MonoBehaviour
         {
             V.Sound.SFX_Play(SFX_SOUND.LASER);
             var obj = V.pool.Get<BulletBase>(POOLTYPE.LASER);
-            obj.SetUp(BULLETTYPE.LASER, V.Player.Muzzle.transform, V.Player, null, 0, 0f, 3f);
+            obj.SetUp(BULLETTYPE.LASER, V.Player.Muzzle.transform.position, V.Player, null, 0, 0f, 3f);
         }
         else
         {

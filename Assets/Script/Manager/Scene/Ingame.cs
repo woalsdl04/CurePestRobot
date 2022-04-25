@@ -69,7 +69,7 @@ public class Ingame : SceneBase
     {
         base.ScenePlaying();
 
-        FunctionKey();
+        CheatKey();
 
         if (PainValue >= 100)
         {
@@ -113,6 +113,15 @@ public class Ingame : SceneBase
         }
     }
     public void IngamePlaying() 
+    {
+        SpawnEnemys();
+
+        SpawnNpcRed();
+        
+        SpawnNpcWhite();
+    }
+
+    public void SpawnEnemys()
     {
         if(V.Spawn.EnemyList.Count == 0) 
         {
@@ -219,7 +228,10 @@ public class Ingame : SceneBase
 
             rountCount++;
         }
+    }
 
+    public void SpawnNpcRed()
+    {
         if(RedRespawnTIme < V.WorldTIme) 
         {
             float r = Random.Range(-13f, 13f);
@@ -228,7 +240,10 @@ public class Ingame : SceneBase
 
             RedRespawnTIme = V.WorldTIme +  V.DataInfo.RedRespawnTIme;
         }
+    }
 
+    public void SpawnNpcWhite()
+    {
         if(WhiteRespawnTIme < V.WorldTIme)
         {
             float r = Random.Range(-13f, 13f);
@@ -237,29 +252,9 @@ public class Ingame : SceneBase
 
             WhiteRespawnTIme = V.WorldTIme + V.DataInfo.WhiteRespawnTIme;
         }
-
-        
     }
 
-    public override void SceneEnd()
-    {
-        base.SceneEnd();
-
-        if ((V.NowScene.name == "Stage1" || V.NowScene.name == "Stage2") && V.IsGameOver) 
-        {
-            ChangeScene("GameOver");
-        }
-        else if (V.NowScene.name == "Stage1" && !V.IsGameOver) 
-        {
-            ChangeScene("Stage2");
-        }
-        else if (V.NowScene.name == "Stage2" && !V.IsGameOver) 
-        {
-            ChangeScene("GameClear");
-        }
-    }
-
-    public void FunctionKey()
+    public void CheatKey()
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
@@ -321,5 +316,22 @@ public class Ingame : SceneBase
         }
     }
 
+    public override void SceneEnd()
+    {
+        base.SceneEnd();
+
+        if ((V.NowScene.name == "Stage1" || V.NowScene.name == "Stage2") && V.IsGameOver) 
+        {
+            ChangeScene("GameOver");
+        }
+        else if (V.NowScene.name == "Stage1" && !V.IsGameOver) 
+        {
+            ChangeScene("Stage2");
+        }
+        else if (V.NowScene.name == "Stage2" && !V.IsGameOver) 
+        {
+            ChangeScene("GameClear");
+        }
+    }
 
 }
