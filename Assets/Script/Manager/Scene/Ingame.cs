@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System;
 
 public enum ROUND_STEP 
 {
@@ -10,11 +12,18 @@ public enum ROUND_STEP
     BOSS_CLEAR,
 }
 
+[Serializable]
+public class EnemyInfo //적
+{
+    public POOLTYPE[] EnemyType;
+}
+
 public class Ingame : SceneBase
 {
-    public ROUND_STEP round_Step = ROUND_STEP.PLAYING;
+    public EnemyInfo[] enemyInfos;
 
-    public int rountCount = 1;
+    public ROUND_STEP round_Step = ROUND_STEP.PLAYING;
+    public int roundCount = 1;
 
     public float RedRespawnTIme = 0f;
     public float WhiteRespawnTIme = 0f;
@@ -37,7 +46,7 @@ public class Ingame : SceneBase
     }
 
     private float pain = 0f;
-
+    
     public float NextStageTime = 0f;
     // Start is called before the first frame update
     void Start()
@@ -47,7 +56,7 @@ public class Ingame : SceneBase
         V.Player_WeaponeLevel = 1;
         V.Player_Level = 1;
         PainValue = 0;
-        rountCount = 1;
+        roundCount = 0;
 
         if(V.NowScene.name == "Stage1") 
         {
@@ -121,112 +130,31 @@ public class Ingame : SceneBase
         SpawnNpcWhite();
     }
 
-    public void SpawnEnemys()
-    {
+    public void SpawnEnemys() // 적 소환 명령
+    { 
         if(V.Spawn.EnemyList.Count == 0) 
         {
-            if (V.NowScene.name == "Stage1")
+            if(roundCount < enemyInfos.Length)
             {
-                switch (rountCount) 
+                for(int i  = 0; i < enemyInfos[roundCount].EnemyType.Length; i++)
                 {
-                    case 1:
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_BACTERIA, 5);
-                        break;
-                    case 2:
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_BACTERIA, 2);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_CANCER, 1);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_BACTERIA, 2);
-                        break;
-                    case 3:
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_CANCER, 1);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_BACTERIA, 1);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_CANCER, 1);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_BACTERIA, 1);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_CANCER, 1);
-                        break;
-                    case 4:
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_CANCER, 2);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_VIRUS, 1);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_CANCER, 2);
-                        break;
-                    case 5:
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_CANCER, 5);
-                        break;
-                    case 6:
-                        V.Fade.FadeIn(new Color(0.7f, 0, 0), 0.5f, 0.5f, 6);
-                        V.UI.WarningText.gameObject.SetActive(true);
-                        V.Cam.ShakeRepeat(2f);
-
-
-                        round_Step = ROUND_STEP.BOSS_BEFORE;
-                        return;
+                    V.Spawn.SpawnEnemy(enemyInfos[roundCount].EnemyType[i], i); 
                 }
-
-                V.UI.SetInfo("ROUND " + rountCount);
+                
+                V.UI.SetInfo("ROUND " + (roundCount + 1));
+                V.UI.SetUi(UI_TYPE.ROUND, roundCount);
+                
+                roundCount++;
             }
-            else if (V.NowScene.name == "Stage2")
+            else if(roundCount == enemyInfos.Length)
             {
-                switch (rountCount)
-                {
-                    case 1:
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_BACTERIA, 5);
-                        break;
-                    case 2:
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_BACTERIA, 2);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_GERM, 1);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_BACTERIA, 2);
-                        break;
-                    case 3:
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_CANCER, 1);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_BACTERIA, 1);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_GERM, 1);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_BACTERIA, 1);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_CANCER, 1);
-                        break;
-                    case 4:
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_CANCER, 2);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_GERM, 1);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_CANCER, 2);
-                        break;
-                    case 5:
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_VIRUS, 2);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_BACTERIA, 1);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_VIRUS, 2);
-                        break;
-                    case 6:
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_CANCER, 5);
-                        break;
-                    case 7:
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_GERM, 1);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_BACTERIA, 3);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_GERM, 1);
-                        break;
-                    case 8:
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_VIRUS, 5);
-                        break;
-                    case 9:
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_GERM, 2);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_CANCER, 1);
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_GERM, 2);
-                        break;
-                    case 10:
-                        V.Spawn.SpawnEnemy(POOLTYPE.E_GERM, 5);
-                        break;
-                    case 11:
-                        V.Fade.FadeIn(new Color(0.7f, 0, 0), 0.5f, 0.5f, 6);
-                        V.UI.WarningText.gameObject.SetActive(true);
-                        V.Cam.ShakeRepeat(2f);
+                V.Fade.FadeIn(new Color(0.7f, 0, 0), 0.5f, 0.5f, 6);
+                V.UI.WarningText.gameObject.SetActive(true);
+                V.Cam.ShakeRepeat(2f);
 
-                        round_Step = ROUND_STEP.BOSS_BEFORE;
-                        return;
-                }
-
-                V.UI.SetInfo("ROUND " + rountCount);
+                round_Step = ROUND_STEP.BOSS_BEFORE;
+                return;
             }
-
-            V.UI.SetUi(UI_TYPE.ROUND, rountCount);
-
-            rountCount++;
         }
     }
 
@@ -234,7 +162,7 @@ public class Ingame : SceneBase
     {
         if(RedRespawnTIme < V.WorldTIme) 
         {
-            float r = Random.Range(-13f, 13f);
+            float r = UnityEngine.Random.Range(-13f, 13f);
 
             V.Spawn.SpawnEnemy(POOLTYPE.E_RED, new Vector3(r, 25, -3));
 
@@ -246,7 +174,7 @@ public class Ingame : SceneBase
     {
         if(WhiteRespawnTIme < V.WorldTIme)
         {
-            float r = Random.Range(-13f, 13f);
+            float r = UnityEngine.Random.Range(-13f, 13f);
 
             V.Spawn.SpawnEnemy(POOLTYPE.E_WHITE, new Vector3(r, 25, -3));
 
@@ -307,12 +235,12 @@ public class Ingame : SceneBase
         }
         else if (Input.GetKeyDown(KeyCode.F9))
         {
-            V.Spawn.SpawnEnemy(POOLTYPE.E_RED, new Vector3(Random.Range(-13f, 13f), 25, -3));
+            V.Spawn.SpawnEnemy(POOLTYPE.E_RED, new Vector3(UnityEngine.Random.Range(-13f, 13f), 25, -3));
             
         }
         else if (Input.GetKeyDown(KeyCode.F10))
         {
-            V.Spawn.SpawnEnemy(POOLTYPE.E_WHITE, new Vector3(Random.Range(-13f, 13f), 25, -3));
+            V.Spawn.SpawnEnemy(POOLTYPE.E_WHITE, new Vector3(UnityEngine.Random.Range(-13f, 13f), 25, -3));
         }
     }
 

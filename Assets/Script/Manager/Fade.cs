@@ -11,7 +11,7 @@ public enum FADE_STEP
     FADE_END,
 }
 
-public class Fade : MonoBehaviour
+public class Fade : MonoBehaviour //페이드 클래스
 {
     public FADE_STEP fadeStep = FADE_STEP.FADE_END;
 

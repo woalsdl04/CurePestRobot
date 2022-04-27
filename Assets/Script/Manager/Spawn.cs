@@ -8,8 +8,6 @@ public class Spawn : MonoBehaviour
 
     public List<Transform> points = new List<Transform>();
 
-    public int EnemyCount = 0;
-
     public List<GameObject> EnemyList = new List<GameObject>();
 
     private void Awake()
@@ -31,15 +29,10 @@ public class Spawn : MonoBehaviour
 
     public void SpawnEnemy(POOLTYPE enemyType, int Count)
     {
-        for (int i = 0; i < Count; i++)
-        {
-            var obj = V.pool.Get<EnemyBase>(enemyType);
-            obj.StartPos = points[EnemyCount % 5].position;
+        var obj = V.pool.Get<EnemyBase>(enemyType);
+        obj.StartPos = points[Count].position;
 
-            EnemyList.Add(obj.gameObject);
-
-            EnemyCount++;
-        }
+        EnemyList.Add(obj.gameObject);
     }
 
     public void SpawnEnemy(POOLTYPE enemyType, Vector3 pos)
