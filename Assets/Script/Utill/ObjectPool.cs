@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum POOLTYPE 
+public enum POOLTYPE //오브젝트 종류
 {
     OBJECT,
     PLAYER,
@@ -26,10 +26,10 @@ public enum POOLTYPE
 
     PARTICLE_BOSS_HIT_LASER,
 
-    END
+    END //끝
 }
 
-public class ObjectPool : MonoBehaviour
+public class ObjectPool : MonoBehaviour //오브젝트 풀
 {
 
     public List<GameObject> pools = new List<GameObject>();
@@ -38,7 +38,7 @@ public class ObjectPool : MonoBehaviour
         V.pool = this;
     }
 
-    public T Get<T>(POOLTYPE poolType) where T : Component 
+    public T Get<T>(POOLTYPE poolType) where T : Component //오브젝트 찾기 <T>
     {
         var obj_Parenet = pools[(int)poolType];
 
@@ -63,12 +63,12 @@ public class ObjectPool : MonoBehaviour
         return obj.GetComponent<T>();
     }
 
-    public void Return(GameObject obj) 
+    public void Return(GameObject obj) // 오브젝트 반납
     {
         obj.SetActive(false);
     }
 
-    public GameObject GetObj(POOLTYPE poolType) 
+    public GameObject GetObj(POOLTYPE poolType) //프리펩 찾기
     {
         string objPath = "";
 
@@ -130,7 +130,7 @@ public class ObjectPool : MonoBehaviour
 
         }
 
-        var obj = Instantiate(Resources.Load<GameObject>(objPath));
+        var obj = Instantiate(Resources.Load<GameObject>(objPath)); //오브젝트 생성
 
         return obj;
     }
@@ -138,7 +138,7 @@ public class ObjectPool : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < (int)POOLTYPE.END; i++) 
+        for(int i = 0; i < (int)POOLTYPE.END; i++) //부모 오브젝트들 생성
         {
             var obj = new GameObject(((POOLTYPE)i).ToString());
             obj.transform.SetParent(gameObject.transform);

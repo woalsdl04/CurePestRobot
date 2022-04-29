@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BossSlider : MonoBehaviour
+public class BossSlider : MonoBehaviour //보스 체력바
 {
     GameObject Target;
     RectTransform rect;

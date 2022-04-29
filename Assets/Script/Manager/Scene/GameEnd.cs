@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameEnd : SceneBase
+public class GameEnd : SceneBase //게임 종료 씬
 {
     public Text Name;
 

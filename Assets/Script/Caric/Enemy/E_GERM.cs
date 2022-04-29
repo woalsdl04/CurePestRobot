@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E_GERM : EnemyBase
+public class E_GERM : EnemyBase //세균 클래스
 {
     int count = 0;
     // Start is called before the first frame update

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss1 : BossBase
+public class Boss1 : BossBase //보스1 클래스
 {
     IEnumerator AttackCorotine = null;
 
@@ -45,7 +45,7 @@ public class Boss1 : BossBase
         V.Spawn.EnemyList.Remove(gameObject);
         foreach (var item in V.Spawn.EnemyList)
         {
-            new JudgeMenetSign(V.Player, item.GetComponent<Caric>(), 100000);
+            new JudgMentSign(V.Player, item.GetComponent<Caric>(), 100000);
         }
 
         StartCoroutine(BossDie());
@@ -62,7 +62,7 @@ public class Boss1 : BossBase
         CC.enabled = false;
     }
 
-    public IEnumerator BossAttack() 
+    public IEnumerator BossAttack() //보스 공격
     {
         while (true) 
         {
@@ -78,13 +78,13 @@ public class Boss1 : BossBase
             switch (r) 
             {
                 case 0:
-                    AttackCorotine = TwoAngleChangeAttack();
+                    AttackCorotine = TwoAngleChangeAttack(); //patten 1
                     break;
                 case 1:
-                    AttackCorotine = EnemySpawnPatten();
+                    AttackCorotine = EnemySpawnPatten(); //patten 2
                     break;
                 case 2:
-                    AttackCorotine = MoveAndCircleAttack();
+                    AttackCorotine = MoveAndCircleAttack(); //patten 3
                     break;
             }
 
@@ -94,7 +94,7 @@ public class Boss1 : BossBase
         }
     }
 
-    public IEnumerator TwoAngleChangeAttack() 
+    public IEnumerator TwoAngleChangeAttack() // 각도 번갈아가면서 공격 패턴
     {
         int Count = 0;
 
@@ -113,7 +113,7 @@ public class Boss1 : BossBase
         }
     }
 
-    public IEnumerator MoveAndCircleAttack()
+    public IEnumerator MoveAndCircleAttack() //움직인 후 원형탄 공격 패턴
     {
         for(int i = 0; i < 5; i++) 
         {
@@ -158,7 +158,7 @@ public class Boss1 : BossBase
         }
     }
 
-    public IEnumerator EnemySpawnPatten()
+    public IEnumerator EnemySpawnPatten() //적 생성 패턴
     {
         for(int i = 0; i < 10; i++) 
         {
@@ -168,7 +168,7 @@ public class Boss1 : BossBase
         }
     }
 
-    public IEnumerator BackPos()
+    public IEnumerator BackPos() //위치 되돌아가기
     {
         while(Vector3.Distance(BackUpPos, transform.position) > 0.01f) 
         {
@@ -178,7 +178,7 @@ public class Boss1 : BossBase
         }
     }
 
-    public IEnumerator BossDie() 
+    public IEnumerator BossDie() //보스 사망
     {
         int bombCount = 30;
         

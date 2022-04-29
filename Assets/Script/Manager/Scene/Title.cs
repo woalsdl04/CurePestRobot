@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Title : SceneBase
+public class Title : SceneBase //타이틀
 {
     // Start is called before the first frame update
     public int StepCount = 0;
@@ -39,11 +39,11 @@ public class Title : SceneBase
         Select();
     }
 
-    public void Select() 
+    public void Select() // 버튼 선택
     {
         int count = StepCount % 3;
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow)) // 위로
         {
             StepCount--;
             PlayerImage.transform.SetParent(buttons[StepCount % 3].transform);
@@ -51,7 +51,7 @@ public class Title : SceneBase
             V.Sound.SFX_Play(SFX_SOUND.HIT);
             Debug.Log(StepCount % 3);
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.DownArrow)) // 아래로
         {
             StepCount++;
             PlayerImage.transform.SetParent(buttons[StepCount % 3].transform);
@@ -60,11 +60,11 @@ public class Title : SceneBase
             Debug.Log(StepCount % 3);
         }
 
-        if (Input.GetKeyDown(KeyCode.Z)) 
+        if (Input.GetKeyDown(KeyCode.Z)) //선택
         {
             switch (count) 
             {
-                case 0:
+                case 0: // 게임 시작
                     
                     V.Fade.FadeIn(Color.black, 1f, 1f, 1);
                     Camera.main.GetComponent<Animation>().Play("TitleCameraAnim");
@@ -72,13 +72,13 @@ public class Title : SceneBase
                     sceneStep = SCENE_STEP.END_BEFORE;
 
                     break;
-                case 1:
+                case 1: // show 랭킹
                     V.Sound.SFX_Play(SFX_SOUND.HIT);
                     if (RankPopup.activeSelf) RankPopup.SetActive(false);
                     else RankPopup.SetActive(true);
 
                     break;
-                case 2:
+                case 2: // 게임 종료
                     V.Sound.SFX_Play(SFX_SOUND.HIT);
                     Application.Quit();
 

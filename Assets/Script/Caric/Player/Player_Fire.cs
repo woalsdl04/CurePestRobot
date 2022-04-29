@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Fire : MonoBehaviour
+public class Player_Fire : MonoBehaviour //플레이어 공격&변신 클래스
 {
     public KeyCode AttackKey = KeyCode.Z;
     public KeyCode ChangeKey = KeyCode.X;
@@ -34,7 +34,7 @@ public class Player_Fire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Input.GetKey(AttackKey) && Input.GetKeyDown(ChangeKey))
+        if (!Input.GetKey(AttackKey) && Input.GetKeyDown(ChangeKey)) //클래스 변경 (변신)
         {
             if (ChangeDelayTime < V.WorldTIme)
             {
@@ -60,22 +60,21 @@ public class Player_Fire : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(AttackKey))
+        if (Input.GetKey(AttackKey)) //공격
         {
             if (BulletFireCoolTime < V.WorldTIme)
             {
-
                 switch (V.Player.Player_class)
                 {
 
-                    case BULLETTYPE.BASIC:
+                    case BULLETTYPE.BASIC: //기본
                         
                         V.Sound.SFX_Play(SFX_SOUND.SHOOT, 0.5f);
 
                         BasicShoot();                   
 
                         break;
-                    case BULLETTYPE.SMART:
+                    case BULLETTYPE.SMART: //유도탄
 
                         col = Physics.OverlapSphere(transform.position, 8f, LayerMask.GetMask("Enemy"));
 
@@ -92,22 +91,22 @@ public class Player_Fire : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(AttackKey) && V.Player.Player_class == BULLETTYPE.LASER) 
+        if(Input.GetKeyDown(AttackKey) && V.Player.Player_class == BULLETTYPE.LASER) //레이저 공격 키 눌렀을 때
         {
             LaserChargeOn();
         }
-        else if (Input.GetKeyUp(AttackKey) && V.Player.Player_class == BULLETTYPE.LASER) 
+        else if (Input.GetKeyUp(AttackKey) && V.Player.Player_class == BULLETTYPE.LASER) //레이저 공격 키 땠을 때
         {
             LaserShoot();
         }
 
-        if (Input.GetKeyDown(BombKey)) 
+        if (Input.GetKeyDown(BombKey)) //폭탄
         {
             if(V.Player.Mp >= 100) 
             {
                 foreach (var item in V.Spawn.EnemyList)
                 {
-                    new JudgeMenetSign(V.Player, item.GetComponent<Caric>(), 5);      
+                    new JudgMentSign(V.Player, item.GetComponent<Caric>(), 5);      
                 }
                 
                 var bomb = V.pool.Get<Transform>(POOLTYPE.BOMB);
@@ -120,7 +119,7 @@ public class Player_Fire : MonoBehaviour
         }
     }
 
-    public void BasicShoot() 
+    public void BasicShoot() //기본 슛
     {
         float w = 0.5f;
         float ws = -(w * V.Player_WeaponeLevel) / 2;
@@ -136,7 +135,7 @@ public class Player_Fire : MonoBehaviour
         BulletFireCoolTime = V.WorldTIme + AttackCoolTime;
     }
 
-    public IEnumerator SmartShoot() 
+    public IEnumerator SmartShoot() //유도탄 슛
     {
         int shootCount = V.Player_WeaponeLevel + 1;
 
@@ -159,22 +158,19 @@ public class Player_Fire : MonoBehaviour
         }
     }
 
-    public void LaserChargeOn()
+    public void LaserChargeOn() //레이저 차지
     {
         LaserCharge_Pt.SetActive(true);
         LaserCharge_Time = V.WorldTIme + (AttackCoolTime * 8);
     }
 
-    public void LaserShoot() 
+    public void LaserShoot() //레이저 슛
     { 
         if(LaserCharge_Time < V.WorldTIme)
         {
             V.Sound.SFX_Play(SFX_SOUND.LASER);
             var obj = V.pool.Get<BulletBase>(POOLTYPE.LASER);
             obj.SetUp(BULLETTYPE.LASER, V.Player.Muzzle.transform.position, V.Player, null, 0, 0f, 3f);
-        }
-        else
-        {
         }
             
         LaserCharge_Pt.SetActive(false);

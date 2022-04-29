@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 using System;
 
-public enum ROUND_STEP 
+public enum ROUND_STEP //라운드 스텝 
 {
     PLAYING,
     BOSS_BEFORE,
@@ -13,12 +13,12 @@ public enum ROUND_STEP
 }
 
 [Serializable]
-public class EnemyInfo //적
+public class EnemyInfo //적 정보
 {
     public POOLTYPE[] EnemyType;
 }
 
-public class Ingame : SceneBase
+public class Ingame : SceneBase //인게임
 {
     public EnemyInfo[] enemyInfos;
 
@@ -212,7 +212,7 @@ public class Ingame : SceneBase
         {
             foreach (var item in V.Spawn.EnemyList)
             {
-                new JudgeMenetSign(V.Player, item.GetComponent<Caric>(), 100000);
+                new JudgMentSign(V.Player, item.GetComponent<Caric>(), 100000);
             }        
         }
         else if (Input.GetKeyDown(KeyCode.F7))

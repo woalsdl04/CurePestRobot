@@ -9,7 +9,7 @@ public enum PLAYER_CLASS
     LASER,
 }
 
-public partial class Player_Main : Caric
+public partial class Player_Main : Caric //플레이어 메인 클래스
 {
     public GameObject Muzzle = null;
     public GameObject Core = null;
@@ -69,7 +69,7 @@ public partial class Player_Main : Caric
     {
         if(hit.transform.gameObject.layer == LayerMask.NameToLayer("Enemy") && !Barrier.activeSelf && !IsMoojuck) 
         {
-            new JudgeMenetSign(hit.transform.GetComponent<Caric>(), this, 1);
+            new JudgMentSign(hit.transform.GetComponent<Caric>(), this, 1);
             IsMoojuck = true;
 
 

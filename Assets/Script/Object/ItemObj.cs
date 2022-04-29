@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemObj : CBase
+public class ItemObj : CBase //아이템 오브젝트 클래스
 {
     // Start is called before the first frame update
     void Start()
     {
-        MoveSpeed = 6f;
+        MoveSpeed = 6f; //속도
     }
 
     // Update is called once per frame

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ENEMY_STEP 
+public enum ENEMY_STEP //적 스텝
 {
     START,
     S2A,

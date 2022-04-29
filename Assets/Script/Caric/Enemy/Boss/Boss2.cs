@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss2 : BossBase
+public class Boss2 : BossBase //보스2 클래스
 {
     // Start is called before the first frame update
     IEnumerator AttackCorotine = null;
@@ -46,7 +46,7 @@ public class Boss2 : BossBase
         V.Spawn.EnemyList.Remove(gameObject);
         foreach (var item in V.Spawn.EnemyList)
         {
-            new JudgeMenetSign(V.Player, item.GetComponent<Caric>(), 100000);
+            new JudgMentSign(V.Player, item.GetComponent<Caric>(), 100000);
         }
 
         StartCoroutine(BossDie());
@@ -63,7 +63,7 @@ public class Boss2 : BossBase
         CC.enabled = false;
     }
 
-    public IEnumerator BossAttack()
+    public IEnumerator BossAttack() //보스 공격
     {
         while (true)
         {
@@ -79,13 +79,13 @@ public class Boss2 : BossBase
             switch (r)
             {
                 case 0:
-                    AttackCorotine = LaserAttack();
+                    AttackCorotine = LaserAttack(); //patten 1
                     break;
                 case 1:
-                    AttackCorotine = EnemySpawnPatten();
+                    AttackCorotine = EnemySpawnPatten(); //patten 2
                     break;
                 case 2:
-                    AttackCorotine = MoveAndCircleAttack();
+                    AttackCorotine = MoveAndCircleAttack(); //patten 3
                     break;
             }
 
@@ -95,7 +95,7 @@ public class Boss2 : BossBase
         }
     }
 
-    public IEnumerator LaserAttack()
+    public IEnumerator LaserAttack() //레이저 공격 패턴
     {
         int stepCount = 0;
 
@@ -146,7 +146,7 @@ public class Boss2 : BossBase
                         {
                             if (hit.transform != null && hit.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
                             {
-                                new JudgeMenetSign(this, hit.transform.GetComponent<Caric>());
+                                new JudgMentSign(this, hit.transform.GetComponent<Caric>());
                             }
                         }
 
@@ -162,7 +162,7 @@ public class Boss2 : BossBase
         }
     }
 
-    public IEnumerator MoveAndCircleAttack()
+    public IEnumerator MoveAndCircleAttack() //움직인 후 원형탄 공격 패턴
     {
         for (int i = 0; i < 5; i++)
         {
@@ -209,7 +209,7 @@ public class Boss2 : BossBase
         }
     }
 
-    public IEnumerator EnemySpawnPatten()
+    public IEnumerator EnemySpawnPatten() //적 생성 패턴
     {
         for (int i = 0; i < 5; i++)
         {
@@ -219,7 +219,7 @@ public class Boss2 : BossBase
         }
     }
 
-    public IEnumerator BackPos()
+    public IEnumerator BackPos() //위치 되돌아가기
     {
         while (Vector3.Distance(BackUpPos, transform.position) > 0.01f)
         {
@@ -229,7 +229,7 @@ public class Boss2 : BossBase
         }
     }
 
-    public IEnumerator BossDie()
+    public IEnumerator BossDie() //보스 사망
     {
         int bombCount = 30;
 

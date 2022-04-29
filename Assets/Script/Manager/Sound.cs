@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SFX_SOUND 
+public enum SFX_SOUND //사운드 종류
 {
     SHOOT,
     LASER,
@@ -12,26 +12,14 @@ public enum SFX_SOUND
     BOMB,
     EXPLOSION,
 }
-public class Sound : MonoBehaviour
+public class Sound : MonoBehaviour //사운드 매니저
 {
     public void Awake()
     {
         V.Sound = this;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void SFX_Play(SFX_SOUND sound, float volume = 1f)
+    public void SFX_Play(SFX_SOUND sound, float volume = 1f) //효과음 재생
     {
         var obj = new GameObject();
         obj.AddComponent<AudioSource>().clip = GetSound(sound);
@@ -43,7 +31,7 @@ public class Sound : MonoBehaviour
     }
 
 
-    public AudioClip GetSound(SFX_SOUND sound) 
+    public AudioClip GetSound(SFX_SOUND sound) //사운드 찾기
     {
         AudioClip clip = null;
 

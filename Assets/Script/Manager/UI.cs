@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum UI_TYPE 
+public enum UI_TYPE //ui 종류
 {
     HP,
     MP,
@@ -14,7 +14,7 @@ public enum UI_TYPE
     LEVEL,
 }
 
-public class UI : MonoBehaviour
+public class UI : MonoBehaviour // ui 매니저
 {
     public Slider HpSlider;
     public Slider MpSlider;
@@ -42,18 +42,13 @@ public class UI : MonoBehaviour
     {
         V.UI = this;
     }
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         SetUi(UI_TYPE.SOCRE, V.ScoreValue);
     }
 
-    public void SetUi(UI_TYPE type, float value) 
+    public void SetUi(UI_TYPE type, float value) //ui 설정
     {
         switch (type) 
         {
@@ -98,13 +93,13 @@ public class UI : MonoBehaviour
         }
     }
 
-    public void ChangeClassImage(int index) 
+    public void ChangeClassImage(int index)  
     {
         ClassImg.sprite = ClassSprite[index % 3];
         ClassText.text = ClassSprite[index % 3].name;
     }
-
-    public void SetInfo(string info)
+ 
+    public void SetInfo(string info) //정보 ui 애니메이션 실행
     {
         InfoText.GetComponent<Animation>().Stop();
 

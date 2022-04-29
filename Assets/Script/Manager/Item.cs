@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ITEM 
+public enum ITEM //아이템 종류
 {
     WEAPONEUPGRADE,
     BARRIER,
@@ -14,7 +14,7 @@ public enum ITEM
     END,
 }
 
-public class Item : MonoBehaviour
+public class Item : MonoBehaviour //아이템 매니저
 {
 
     public void GetItem() //아이템 적용
@@ -69,7 +69,7 @@ public class Item : MonoBehaviour
         V.UI.SetInfo(info);
     }
 
-    public IEnumerator SpeedUpItem(float time) 
+    public IEnumerator SpeedUpItem(float time) //스피드업 아이템 코루틴
     {
         V.Player.MoveSpeed += 2f;
 
@@ -82,15 +82,5 @@ public class Item : MonoBehaviour
     private void Awake()
     {
         V.Item = this;
-    }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

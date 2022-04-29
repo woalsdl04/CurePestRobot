@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Rank 
+public class Rank //랭크
 {
     public string name = "";
     public float score = 0f;
@@ -16,7 +16,7 @@ public class Rank
     }
 }
 
-public class Ranking : MonoBehaviour
+public class Ranking : MonoBehaviour //랭킹
 {
     public List<Text> ScoreText = new List<Text>();
     public void AddRank(Rank newRank) //랭킹 추가

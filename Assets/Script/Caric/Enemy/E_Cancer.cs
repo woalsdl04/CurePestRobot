@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E_Cancer : EnemyBase
+public class E_Cancer : EnemyBase //암세포 클래스
 {
     // Start is called before the first frame update
     void Start()

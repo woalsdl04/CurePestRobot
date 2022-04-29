@@ -18,7 +18,7 @@ public partial class V : MonoBehaviour //공용 스태틱 클래스
     public static Fade Fade = null;
     public static Cam Cam = null;
     public static Item Item = null;
-    public static JudgeMent Judge = null;
+    public static JudgMent Judg = null;
     public static Spawn Spawn = null;
     public static UI UI = null;
     public static Ingame Ingame = null;

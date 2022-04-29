@@ -5,7 +5,7 @@ using System;
 using System.IO;
 
 [Serializable]
-public class Info 
+public class Info //데이터 정보
 {
     public int PlayerHp = 0;
     public int PlayerDmg = 0;
@@ -21,11 +21,11 @@ public class Info
     public float WhiteRespawnTIme = 0f;
 }
 
-public class DataInfo : MonoBehaviour
+public class DataInfo : MonoBehaviour //데이터
 {
     public Info info;
 
-    public void Save()
+    public void Save() //저장
     {
         string path = Path.Combine(Application.persistentDataPath, "DataInfo.json");
 
@@ -36,7 +36,7 @@ public class DataInfo : MonoBehaviour
         }
     }
 
-    public void Load() 
+    public void Load() //불러오기
     {
         Save();
 

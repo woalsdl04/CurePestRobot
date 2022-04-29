@@ -1399,8 +1399,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneStep: 0
+  enemyInfos:
+  - EnemyType: 0200000002000000020000000200000002000000
+  - EnemyType: 0200000002000000030000000200000002000000
+  - EnemyType: 0400000004000000030000000400000004000000
+  - EnemyType: 0500000005000000020000000500000005000000
+  - EnemyType: 0400000004000000040000000400000004000000
+  - EnemyType: 0400000002000000030000000200000004000000
+  - EnemyType: 0300000002000000020000000200000003000000
+  - EnemyType: 0500000005000000050000000500000005000000
+  - EnemyType: 0300000003000000040000000300000003000000
+  - EnemyType: 0300000003000000030000000300000003000000
   round_Step: 0
-  rountCount: 0
+  roundCount: 1
   RedRespawnTIme: 0
   WhiteRespawnTIme: 0
   NextStageTime: 0
@@ -3630,6 +3641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91bf1199883b19042a19e2f80bc09630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SocreText: {fileID: 0}
 --- !u!1 &1392141233
 GameObject:
   m_ObjectHideFlags: 0
@@ -4577,7 +4589,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnPoint_Parent: {fileID: 1130637163}
   points: []
-  EnemyCount: 0
   EnemyList: []
 --- !u!1 &1732435462
 GameObject:

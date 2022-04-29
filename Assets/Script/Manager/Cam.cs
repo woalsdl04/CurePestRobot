@@ -10,7 +10,7 @@ public enum CAMERA_TARGET
     BOSS_AND_PALYER,
 }
 
-public class Cam : MonoBehaviour
+public class Cam : MonoBehaviour //카메라 매니저
 {
     public CinemachineVirtualCamera VirtualCamera;
     public CinemachineImpulseSource source;
@@ -22,12 +22,12 @@ public class Cam : MonoBehaviour
         V.Cam = this;
     }
 
-    public void ShakeRepeat(float time)
+    public void ShakeRepeat(float time) //카메라 쉐이크 반복
     {
         InvokeRepeating("Shake", 0, time);
     }
 
-    public void Shake() 
+    public void Shake() //카메라 쉐이크
     {
         source.GenerateImpulse();
         if (V.UI.WarningText.gameObject.activeSelf) V.Sound.SFX_Play(SFX_SOUND.WARNING);
@@ -45,7 +45,7 @@ public class Cam : MonoBehaviour
         
     }
 
-    public void ChangeTarget(CAMERA_TARGET target) 
+    public void ChangeTarget(CAMERA_TARGET target) //카메라 타겟 변경
     {
         VirtualCamera.Follow = Target[(int)target].transform;
     }

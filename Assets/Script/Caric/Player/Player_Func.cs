@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class Player_Main : Caric
+public partial class Player_Main : Caric //플레이어 함수 클래스
 {
     
     public void LevelUp() //레벨 업
@@ -34,7 +34,7 @@ public partial class Player_Main : Caric
             );
     }
 
-    public void PlayerMove() 
+    public void PlayerMove() //플레이어 무브
     {
         DIsableCCAndMovePos(ClampPlayerPos());
 
@@ -46,7 +46,7 @@ public partial class Player_Main : Caric
         CC.Move(MoveSpeed * dir * Time.deltaTime);
     }
 
-    public IEnumerator PlayerRotate() 
+    public IEnumerator PlayerRotate() //플레이어 회전
     {
         while (true) 
         {

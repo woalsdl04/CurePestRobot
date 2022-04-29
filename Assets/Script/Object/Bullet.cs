@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class Bullet : BulletBase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if(BulletLifeTime < V.WorldTIme || 
@@ -22,12 +16,12 @@ public class Bullet : BulletBase
 
         switch (BulletType)
         {
-            case BULLETTYPE.BASIC:
+            case BULLETTYPE.BASIC: //기본
 
                 transform.Translate(Vector3.right * MoveSpeed * Time.deltaTime);
 
                 break;
-            case BULLETTYPE.SMART:
+            case BULLETTYPE.SMART: //유도탄
 
                 SmartPos[2] = Target.transform.position;
 
@@ -41,7 +35,7 @@ public class Bullet : BulletBase
                     );
 
                 break;
-            case BULLETTYPE.LASER:
+            case BULLETTYPE.LASER: //레이저
 
                 if(HitCoolTime < V.WorldTIme) 
                 {
@@ -51,7 +45,7 @@ public class Bullet : BulletBase
                     {
                         if(item.transform != null && item.transform.gameObject.layer == LayerMask.NameToLayer("Enemy")) 
                         {
-                            new JudgeMenetSign(Owner, item.transform.gameObject.GetComponent<Caric>());
+                            new JudgMentSign(Owner, item.transform.gameObject.GetComponent<Caric>());
                             V.Particle_Play(POOLTYPE.PARTICLE_HIT_LASER, item.transform.position);
                         }
                     }
@@ -66,7 +60,7 @@ public class Bullet : BulletBase
         }
     }
 
-    public float SmartCurve(float a, float b, float c) 
+    public float SmartCurve(float a, float b, float c) //베지어 곡선
     {
         float ab = Mathf.Lerp(a, b, SmartCurTime);
         float bc = Mathf.Lerp(b, c, SmartCurTime);
@@ -76,7 +70,7 @@ public class Bullet : BulletBase
         return abc;
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other) //충돌 처리
     {
         if (other.GetComponent<Caric>() == Owner ||
             (other.gameObject.layer == Owner.gameObject.layer)) return;
@@ -88,7 +82,7 @@ public class Bullet : BulletBase
             return;
         }
 
-        new JudgeMenetSign(Owner, other.GetComponent<Caric>());
+        new JudgMentSign(Owner, other.GetComponent<Caric>());
 
         V.Particle_Play(POOLTYPE.PARTICLE_HIT, transform.position);
 

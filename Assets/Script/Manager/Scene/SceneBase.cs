@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum SCENE_STEP 
+public enum SCENE_STEP //씬 스텝
 { 
     FIRST_FRAME,
     AWAKE,
@@ -13,7 +13,7 @@ public enum SCENE_STEP
     END
 }
 
-public class SceneBase : MonoBehaviour
+public class SceneBase : MonoBehaviour // 씬 베이스
 {
     public SCENE_STEP sceneStep = SCENE_STEP.FIRST_FRAME;
     // Start is called before the first frame update
@@ -73,10 +73,10 @@ public class SceneBase : MonoBehaviour
     }
 
     public virtual void SceneStart() { }
-    public virtual void ScenePlaying() { }
+    public virtual void ScenePlaying() { } 
     public virtual void SceneEnd() { }
 
-    public void ChangeScene(string sceneName) 
+    public void ChangeScene(string sceneName) //씬 변경
     {
         SceneManager.LoadScene(sceneName);
     }

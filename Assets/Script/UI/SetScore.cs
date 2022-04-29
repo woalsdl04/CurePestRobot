@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SetScore : MonoBehaviour
+public class SetScore : MonoBehaviour //스코어 ui
 {
     // Start is called before the first frame update
     public Text SocreText;

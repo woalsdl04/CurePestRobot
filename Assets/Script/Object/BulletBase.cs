@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BULLETTYPE 
+public enum BULLETTYPE //총알 종류
 { 
     BASIC,
     SMART,

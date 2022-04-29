@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum FADE_STEP 
+public enum FADE_STEP //페이드 클래스
 {
     FADE_IN,
     FADE_OUT,
@@ -11,7 +11,7 @@ public enum FADE_STEP
     FADE_END,
 }
 
-public class Fade : MonoBehaviour //페이드 클래스
+public class Fade : MonoBehaviour //페이드 매니저
 {
     public FADE_STEP fadeStep = FADE_STEP.FADE_END;
 
